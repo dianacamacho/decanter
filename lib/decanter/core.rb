@@ -71,8 +71,8 @@ module Decanter
           .map { |input| [input[:key], input[:options][DEFAULT_VALUE_KEY]] }
           .to_h
 
-        # parse default values
-        handled_keys(default_result)
+        # parse default values for original handled keys and any keys unhandled due to key change via options[:key]
+        handled_keys(default_result).merge(unhandled_keys(default_result))
       end
 
       def default_value_inputs
